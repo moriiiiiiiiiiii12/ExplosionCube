@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Utils : MonoBehaviour
+public class Utils
 {
     public static Color GenerateRandomColor()
     {
