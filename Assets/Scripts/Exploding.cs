@@ -8,12 +8,8 @@ public class Exploding : MonoBehaviour, IInteractable
     [SerializeField] private float _currentPercentDivision = 100;
     [SerializeField] private float _reducingChance = 2;
     [SerializeField] private float _reducingScale = 2;
-
-    [Header("Настройки разделения")]
     [SerializeField] private int _minCountObjects = 2; 
     [SerializeField] private int _maxCountObjects = 6;
-
-    [Header("Настройки взрыва")]
     [SerializeField] private float _explosionRadius = 2;
     [SerializeField] private float _explosionForce = 10;
 
