@@ -1,18 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Spawner : MonoBehaviour
+public class Spawner : MonoBehaviour, IInteractable
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject _point;
+    [SerializeField] private GameObject _prefab;
+
+    public void Interact()
     {
-        
+        Spawn();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Spawn()
     {
-        
+        Instantiate(_prefab, _point.transform.position, Quaternion.identity);
     }
 }

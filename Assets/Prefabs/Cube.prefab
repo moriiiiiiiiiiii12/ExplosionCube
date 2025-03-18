@@ -152,4 +152,4 @@ MonoBehaviour:
   _minCountObjects: 2
   _maxCountObjects: 6
   _explosionRadius: 5.02
-  _explosionForce: 300
+  _explosionForce: 595.9

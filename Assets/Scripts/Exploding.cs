@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Renderer))]
 public class Exploding : MonoBehaviour, IInteractable
 {
-
     [SerializeField] private float _currentPercentDivision = 100;
     [SerializeField] private float _reducingChance = 2;
     [SerializeField] private float _reducingScale = 2;
@@ -33,8 +30,6 @@ public class Exploding : MonoBehaviour, IInteractable
 
         float randomValue = Random.Range(0, _fullPercentDivision);
 
-        Debug.Log($"{_currentPercentDivision} {randomValue}");
-
         if (randomValue < _currentPercentDivision)
         {
             int countObjects = Random.Range(_minCountObjects, _maxCountObjects);
@@ -50,14 +45,24 @@ public class Exploding : MonoBehaviour, IInteractable
     {
         GameObject newObject = Instantiate(gameObject, transform.position, Quaternion.identity);
 
-        Renderer renderer = newObject.GetComponent<Renderer>();
-        renderer.material.color = Utils.GenerateRandomColor();
+        Exploding component = newObject.GetComponent<Exploding>();
 
-        newObject.transform.localScale = newObject.transform.localScale / _reducingScale;
-
-        Exploding exploding = newObject.GetComponent<Exploding>();
-        exploding._currentPercentDivision = exploding._currentPercentDivision / _reducingChance;
+        component.Reducing();
+        component.RandomChangeColor();
 
         return newObject;
+    }
+
+    public void Reducing()
+    {
+        transform.localScale = transform.localScale / _reducingScale;
+
+        _currentPercentDivision = _currentPercentDivision / _reducingChance;
+    }
+
+    public void RandomChangeColor()
+    {
+        Renderer renderer = GetComponent<Renderer>();
+        renderer.material.color = Utils.GenerateRandomColor();
     }
 }

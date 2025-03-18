@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Clicker : MonoBehaviour
@@ -10,9 +8,14 @@ public class Clicker : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0)) 
+        Click();
+    }
+
+    private void Click()
+    {
+        if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = _camera.ScreenPointToRay(Input.mousePosition); 
+            Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, _maxDistance))
@@ -23,7 +26,7 @@ public class Clicker : MonoBehaviour
 
                 if (explodingComponent != null)
                 {
-                    explodingComponent.Interact(); 
+                    explodingComponent.Interact();
                 }
             }
         }
