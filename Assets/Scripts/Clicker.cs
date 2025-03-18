@@ -5,7 +5,6 @@ public class Clicker : MonoBehaviour
     [SerializeField] private Camera _camera;
     [SerializeField] private float _maxDistance = 10;
 
-
     private void Update()
     {
         Click();
