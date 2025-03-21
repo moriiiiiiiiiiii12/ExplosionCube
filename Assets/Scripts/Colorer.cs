@@ -2,15 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+[RequireComponent(typeof(Renderer))]
 public class Colorer : MonoBehaviour
 {
-    void Start()
+    public void RandomChangeColor()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        Renderer renderer = GetComponent<Renderer>();
+        renderer.material.color = Random.color;
     }
 }
