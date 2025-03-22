@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class Spawner : MonoBehaviour, IInteractable
+public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _point;
+    [SerializeField] private IInteractable _interactable;
     [SerializeField] private GameObject _prefab;
+    [SerializeField] private Transform _point;
 
-    public void Interact()
+    private void OnEnable()
     {
-        Spawn();
+        _interactable.InteractivityOccurred += Spawn;
     }
 
-    private void Spawn()
+    private void OnDisable()
+    {
+        _interactable.InteractivityOccurred -= Spawn;
+    }
+
+    public void Spawn()
     {
         Instantiate(_prefab, _point.transform.position, Quaternion.identity);
     }

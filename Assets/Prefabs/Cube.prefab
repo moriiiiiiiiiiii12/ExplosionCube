@@ -13,7 +13,10 @@ GameObject:
   - component: {fileID: 8355288613415837882}
   - component: {fileID: 268049391467530676}
   - component: {fileID: 3793401027282135484}
-  - component: {fileID: 1212992537419752142}
+  - component: {fileID: -3967555498156281967}
+  - component: {fileID: 1824691219724713702}
+  - component: {fileID: 6933272621326376447}
+  - component: {fileID: -7708696396378187136}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -134,7 +137,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
---- !u!114 &1212992537419752142
+--- !u!114 &-3967555498156281967
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,13 +146,54 @@ MonoBehaviour:
   m_GameObject: {fileID: 8588164047392098646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f42027d52f9f2524b971399e4ce52e8c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9058d155b55c744429e72813be06c7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentPercentDivision: 100
+--- !u!114 &1824691219724713702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588164047392098646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4da4d2d015faa976854af7eda9bc138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickable: {fileID: -3967555498156281967}
+  _renderer: {fileID: 8355288613415837882}
+--- !u!114 &6933272621326376447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588164047392098646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7f5802d51a23c92a86924e751355214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _clickable: {fileID: -3967555498156281967}
+  _rigidbody: {fileID: 3793401027282135484}
+  _reducer: {fileID: -7708696396378187136}
   _reducingChance: 2
-  _reducingScale: 2
+  _currentPercentDivision: 100
   _minCountObjects: 2
   _maxCountObjects: 6
-  _explosionRadius: 5.02
-  _explosionForce: 595.9
+  _explosionRadius: 2
+  _explosionForce: 10
+--- !u!114 &-7708696396378187136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8588164047392098646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5796c30d1bca23047b3740f56394fe82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _reducingScale: 2

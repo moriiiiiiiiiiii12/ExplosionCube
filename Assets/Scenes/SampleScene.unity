@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 306857201}
   - component: {fileID: 306857200}
   - component: {fileID: 306857199}
+  - component: {fileID: 306857203}
   - component: {fileID: 306857198}
   m_Layer: 0
   m_Name: SpawnButton
@@ -314,8 +315,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4be8632da7c2fa4eb26b220a2790886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _point: {fileID: 746096893}
+  _clickable: {fileID: 306857203}
   _prefab: {fileID: 8588164047392098646, guid: 8bae506dff7db894eacdd3a3d323293d, type: 3}
+  _point: {fileID: 746096894}
 --- !u!65 &306857199
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -403,6 +405,18 @@ Transform:
   - {fileID: 846471918}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -2.671, y: -24.016, z: -1.938}
+--- !u!114 &306857203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 306857197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9058d155b55c744429e72813be06c7a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &459940285
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,26 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
 [RequireComponent(typeof(Rigidbody))]
 public class Cutter : MonoBehaviour
 {
-    [SerializeField] private Rigidbody _rigidbody; 
-    
+    [SerializeField] IInteractable _interactable;
+
+    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private Reducer _reducer;
+ //   [SerializeField] private Spawner _spawner;
+
     [SerializeField] private float _reducingChance = 2;
-    [SerializeField] private float _reducingScale = 2;
+
+    [SerializeField] private float _currentPercentDivision = 100;
     [SerializeField] private int _minCountObjects = 2; 
     [SerializeField] private int _maxCountObjects = 6;
-    
+    [SerializeField] private float _explosionRadius = 2;
+    [SerializeField] private float _explosionForce = 10;
+
+
     private float _fullPercentDivision = 100;
-    
-    private void Start()
+
+    private void OnEnable()
     {
-        
+        _interactable.InteractivityOccurred += Cut;
     }
 
-    public void Explode()
+    private void OnDisable()
+    {
+        _interactable.InteractivityOccurred -= Cut;
+    }
+
+    public void Cut()
     {
         Destroy(gameObject);
 
@@ -41,10 +55,9 @@ public class Cutter : MonoBehaviour
     {
         GameObject newObject = Instantiate(gameObject, transform.position, Quaternion.identity);
 
-        Exploding component = newObject.GetComponent<Exploding>();
+        newObject.GetComponent<Reducer>().Reducing();
 
-        component.Reducing();
-        component.RandomChangeColor();
+        _currentPercentDivision = _currentPercentDivision / _reducingChance;
 
         return newObject;
     }
