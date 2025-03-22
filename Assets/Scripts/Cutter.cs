@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Cutter : MonoBehaviour
 {
-    [SerializeField] IInteractable _interactable;
+    [SerializeField] private IInteractable _interactable;
 
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Reducer _reducer;
