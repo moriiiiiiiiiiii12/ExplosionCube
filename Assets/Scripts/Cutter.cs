@@ -1,66 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-
 
 [RequireComponent(typeof(Rigidbody))]
 public class Cutter : MonoBehaviour
 {
-    [SerializeField] private Clickable _interactable;
-
-    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private Clickable _clickable;
+    [SerializeField] private Spawner _spawner;
     [SerializeField] private Reducer _reducer;
- //   [SerializeField] private Spawner _spawner;
-
-    [SerializeField] private float _reducingChance = 2;
-
-    [SerializeField] private float _currentPercentDivision = 100;
-    [SerializeField] private int _minCountObjects = 2; 
-    [SerializeField] private int _maxCountObjects = 6;
-    [SerializeField] private float _explosionRadius = 2;
-    [SerializeField] private float _explosionForce = 10;
-
-
-    private float _fullPercentDivision = 100;
+    [SerializeField] private Explosion _explosion;
+    [SerializeField] private float _divisionChance = 100f;
+    [SerializeField] private float _reducingFactor = 2f;
 
     private void OnEnable()
     {
-        _interactable.InteractivityOccurred += Cut;
+        _clickable.InteractivityOccurred += Cut;
     }
 
     private void OnDisable()
     {
-        _interactable.InteractivityOccurred -= Cut;
+        _clickable.InteractivityOccurred -= Cut;
     }
 
-    public void Cut()
+    private void Cut()
     {
-        float randomValue = Random.Range(0, _fullPercentDivision);
-
-        if (randomValue < _currentPercentDivision)
+        float randomValue = Random.Range(0f, 100f);
+        if (randomValue < _divisionChance)
         {
-            int countObjects = Random.Range(_minCountObjects, _maxCountObjects);
-
-            for (int i = 0; i < countObjects; i++)
-            {
-                CreateObject().GetComponent<Rigidbody>().AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
-            }
+            int spawnCount = Random.Range(_spawner.MinCountObjects, _spawner.MaxCountObjects);
+            
+            _spawner.SpawnMultipleObjects(spawnCount);
+            _divisionChance /= _reducingFactor;
         }
 
+        if (_explosion != null && TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
+        {
+            _explosion.ApplyExplosion(rigidbody, transform.position);
+        }
+        
         Destroy(gameObject);
-    }
-    
-    private GameObject CreateObject()
-    {
-        GameObject newObject = Instantiate(gameObject, transform.position, Quaternion.identity);
-
-        newObject.GetComponent<Reducer>().Reducing();
-
-        newObject.GetComponent<Colorer>().RandomChangeColor();
-
-        _currentPercentDivision = _currentPercentDivision / _reducingChance;
-
-        return newObject;
     }
 }

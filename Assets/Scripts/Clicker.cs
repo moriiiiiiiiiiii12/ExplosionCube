@@ -3,29 +3,19 @@ using UnityEngine;
 public class Clicker : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
-    [SerializeField] private float _maxDistance = 10;
+    [SerializeField] private float _maxDistance = 10f;
 
     private void Update()
-    {
-        Click();
-    }
-
-    private void Click()
     {
         if (Input.GetMouseButtonDown(0))
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, _maxDistance))
+            if (Physics.Raycast(ray, out RaycastHit hit, _maxDistance))
             {
-                Transform objectHit = hit.transform;
-
-                Clickable explodingComponent = objectHit.GetComponent<Clickable>();
-
-                if (explodingComponent != null)
+                if (hit.transform.TryGetComponent(out Clickable clickable))
                 {
-                    explodingComponent.Interact();
+                    clickable.Interact();
                 }
             }
         }
