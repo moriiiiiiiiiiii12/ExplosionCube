@@ -7,7 +7,9 @@ public class Clicker : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        int numberButton = 0;
+
+        if (Input.GetMouseButtonDown(numberButton))
         {
             Ray ray = _camera.ScreenPointToRay(Input.mousePosition);
 
