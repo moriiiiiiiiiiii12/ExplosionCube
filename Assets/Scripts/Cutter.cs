@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Cutter : MonoBehaviour
 {
-    [SerializeField] private IInteractable _interactable;
+    [SerializeField] private Clickable _interactable;
 
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private Reducer _reducer;
@@ -36,8 +36,6 @@ public class Cutter : MonoBehaviour
 
     public void Cut()
     {
-        Destroy(gameObject);
-
         float randomValue = Random.Range(0, _fullPercentDivision);
 
         if (randomValue < _currentPercentDivision)
@@ -49,6 +47,8 @@ public class Cutter : MonoBehaviour
                 CreateObject().GetComponent<Rigidbody>().AddExplosionForce(_explosionForce, transform.position, _explosionRadius);
             }
         }
+
+        Destroy(gameObject);
     }
     
     private GameObject CreateObject()
@@ -56,6 +56,8 @@ public class Cutter : MonoBehaviour
         GameObject newObject = Instantiate(gameObject, transform.position, Quaternion.identity);
 
         newObject.GetComponent<Reducer>().Reducing();
+
+        newObject.GetComponent<Colorer>().RandomChangeColor();
 
         _currentPercentDivision = _currentPercentDivision / _reducingChance;
 

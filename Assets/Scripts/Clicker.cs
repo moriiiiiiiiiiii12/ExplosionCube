@@ -21,7 +21,7 @@ public class Clicker : MonoBehaviour
             {
                 Transform objectHit = hit.transform;
 
-                IInteractable explodingComponent = objectHit.GetComponent<IInteractable>();
+                Clickable explodingComponent = objectHit.GetComponent<Clickable>();
 
                 if (explodingComponent != null)
                 {

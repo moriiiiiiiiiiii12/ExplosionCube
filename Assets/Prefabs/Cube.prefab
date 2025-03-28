@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f5802d51a23c92a86924e751355214, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _clickable: {fileID: -3967555498156281967}
+  _interactable: {fileID: -3967555498156281967}
   _rigidbody: {fileID: 3793401027282135484}
   _reducer: {fileID: -7708696396378187136}
   _reducingChance: 2

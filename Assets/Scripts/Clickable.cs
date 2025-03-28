@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Clickable : MonoBehaviour, IInteractable
+public class Clickable : MonoBehaviour
 {
     public event Action InteractivityOccurred;
 
