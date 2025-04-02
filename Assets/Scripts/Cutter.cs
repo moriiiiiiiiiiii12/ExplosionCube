@@ -22,13 +22,14 @@ public class Cutter : MonoBehaviour
 
     private void Cut()
     {
-        float randomValue = Random.Range(0f, 100f);
-        
+        float randomValue = Random.Range(0f, _divisionChance);
+
         if (randomValue < _divisionChance)
         {
             int spawnCount = Random.Range(_spawner.MinCountObjects, _spawner.MaxCountObjects);
 
             _spawner.SpawnMultipleObjects(spawnCount);
+
             _divisionChance /= _reducingFactor;
         }
 
