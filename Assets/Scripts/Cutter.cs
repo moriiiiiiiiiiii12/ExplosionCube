@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 [RequireComponent(typeof(Rigidbody))]
 public class Cutter : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class Cutter : MonoBehaviour
 
         if (_explosion != null && TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
         {
-            _explosion.ApplyExplosion(rigidbody, transform.position);
+            _explosion.Execute(rigidbody, transform.position);
         }
         
         Destroy(gameObject);
