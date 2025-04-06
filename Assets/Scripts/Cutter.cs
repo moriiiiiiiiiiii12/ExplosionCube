@@ -4,24 +4,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Cutter : MonoBehaviour
 {
-    [SerializeField] private Clickable _clickable;
     [SerializeField] private Spawner _spawner;
     [SerializeField] private Reducer _reducer;
     [SerializeField] private Explosion _explosion;
     [SerializeField] private float _divisionChance = 100f;
     [SerializeField] private float _reducingFactor = 2f;
 
-    private void OnEnable()
-    {
-        _clickable.InteractivityOccurred += Cut;
-    }
-
-    private void OnDisable()
-    {
-        _clickable.InteractivityOccurred -= Cut;
-    }
-
-    private void Cut()
+    public void Cut()
     {
         float randomValue = Random.Range(0f, _divisionChance);
 

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+
 public class Clicker : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
@@ -15,7 +16,7 @@ public class Clicker : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit, _maxDistance))
             {
-                if (hit.transform.TryGetComponent(out Clickable clickable))
+                if (hit.transform.TryGetComponent(out ExplosionObject clickable))
                 {
                     clickable.Interact();
                 }
