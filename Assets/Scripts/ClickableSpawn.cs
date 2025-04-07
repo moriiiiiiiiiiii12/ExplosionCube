@@ -1,7 +1,6 @@
 using UnityEngine;
-using System;
 
-public class Clickable : MonoBehaviour
+public class ClickableSpawn : MonoBehaviour
 {
     [SerializeField] private Spawner _spawner;
 

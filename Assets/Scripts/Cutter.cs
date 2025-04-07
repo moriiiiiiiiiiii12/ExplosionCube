@@ -9,25 +9,28 @@ public class Cutter : MonoBehaviour
     [SerializeField] private Explosion _explosion;
     [SerializeField] private float _divisionChance = 100f;
     [SerializeField] private float _reducingFactor = 2f;
+    [SerializeField] private int _minCountObjects = 2; 
+    [SerializeField] private int _maxCountObjects = 6; 
 
     public void Cut()
     {
-        float randomValue = Random.Range(0f, _divisionChance);
+        float minValue = 0f;
+        float maxValue = 100f;
+        float randomValue = Random.Range(minValue, maxValue);
+
+        int spawnCount = Random.Range(_minCountObjects, _maxCountObjects);
 
         if (randomValue < _divisionChance)
         {
-            int spawnCount = Random.Range(_spawner.MinCountObjects, _spawner.MaxCountObjects);
-
-            _spawner.SpawnMultipleObjects(spawnCount);
 
             _divisionChance /= _reducingFactor;
+
+            foreach(Rigidbody rigid in _spawner.SpawnMultipleObjects(spawnCount)) 
+            {
+                _explosion.Execute(rigid, transform.position);
+            }
         }
 
-        if (_explosion != null && TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
-        {
-            _explosion.Execute(rigidbody, transform.position);
-        }
-        
         Destroy(gameObject);
     }
 }

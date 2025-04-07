@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 
@@ -9,11 +8,14 @@ public class ExplosionObject : MonoBehaviour
     [SerializeField] private Colorer _colorer;
     [SerializeField] private Reducer _reducer;
 
+    private void Awake()
+    {
+        _colorer.RandomChangeColor();
+    }
+
     public void Interact()
     {
         _reducer.Reducing();
-
-        _colorer.RandomChangeColor();
 
         _cutter.Cut();
     }

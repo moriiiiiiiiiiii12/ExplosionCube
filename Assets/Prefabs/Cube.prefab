@@ -193,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4be8632da7c2fa4eb26b220a2790886, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 1519257769362254558}
+  _prefab: {fileID: 3064975699715660156}
   _point: {fileID: 9022044231827291696}
   <MinCountObjects>k__BackingField: 2
   <MaxCountObjects>k__BackingField: 6
@@ -226,5 +226,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbb2768da85a10f8b1298cfb1ac6912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _explosionRadius: 2
-  _explosionForce: 10
+  _explosionRadius: 10
+  _explosionForce: 500
