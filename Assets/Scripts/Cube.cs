@@ -1,10 +1,9 @@
 using UnityEngine;
 
 
-public class ExplosionObject : MonoBehaviour
+public class Cube : MonoBehaviour
 {
     [SerializeField] private Cutter _cutter;
-    [SerializeField] private Explosion _explosion;
     [SerializeField] private Colorer _colorer;
     [SerializeField] private Reducer _reducer;
 

@@ -16,7 +16,7 @@ public class Clicker : MonoBehaviour
 
             if (Physics.Raycast(ray, out RaycastHit hit, _maxDistance))
             {
-                if (hit.transform.TryGetComponent(out ExplosionObject clickable))
+                if (hit.transform.TryGetComponent(out Cube clickable))
                 {
                     clickable.Interact();
                 }

@@ -22,11 +22,12 @@ public class Cutter : MonoBehaviour
 
         if (randomValue < _divisionChance)
         {
-
             _divisionChance /= _reducingFactor;
 
-            foreach(Rigidbody rigid in _spawner.SpawnMultipleObjects(spawnCount)) 
+            for(int i = 0; i < spawnCount; i++) 
             {
+                Rigidbody rigid = _spawner.Spawn(transform.position);
+                
                 _explosion.Execute(rigid, transform.position);
             }
         }

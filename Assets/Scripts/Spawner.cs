@@ -7,9 +7,18 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Rigidbody _prefab;
     [SerializeField] private Transform _point;
 
-    public void Spawn()
+    public Rigidbody Spawn()
     {
-        Instantiate(_prefab, _point.position, Quaternion.identity);
+        Rigidbody rigidbody = Instantiate(_prefab, _point.position, Quaternion.identity);
+        
+        return rigidbody;
+    }
+
+    public Rigidbody Spawn(Vector3 position)
+    {
+        Rigidbody rigidbody = Instantiate(_prefab, position, Quaternion.identity);
+        
+        return rigidbody;
     }
     
     public List<Rigidbody> SpawnMultipleObjects(int count)
