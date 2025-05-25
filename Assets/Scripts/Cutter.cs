@@ -4,34 +4,47 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Cutter : MonoBehaviour
 {
+    [Header("Необходимые компоненты")]
     [SerializeField] private Spawner _spawner;
-    [SerializeField] private Reducer _reducer;
     [SerializeField] private Explosion _explosion;
-    [SerializeField] private float _divisionChance = 100f;
-    [SerializeField] private float _reducingFactor = 2f;
+    [SerializeField] private Reducer _reducer;
+
+    [Header("Настройки спавна")]
     [SerializeField] private int _minCountObjects = 2; 
     [SerializeField] private int _maxCountObjects = 6; 
 
-    public void Cut()
+    public void Cut(GameObject target)
     {
-        float minValue = 0f;
-        float maxValue = 100f;
-        float randomValue = Random.Range(minValue, maxValue);
-
-        int spawnCount = Random.Range(_minCountObjects, _maxCountObjects);
-
-        if (randomValue < _divisionChance)
+        if (!target.TryGetComponent(out Cube cube))
         {
-            _divisionChance /= _reducingFactor;
+            Destroy(target);
+            return;
+        }
 
-            for(int i = 0; i < spawnCount; i++) 
+        if (cube.TryConsumeDivision())
+        {
+            _reducer.Reducing(target.transform);
+
+            int spawnCount = Random.Range(_minCountObjects, _maxCountObjects);
+            Vector3 childScale = target.transform.localScale;
+            float childChance = cube.CurrentChance;
+            float reducingFact = cube.ReducingFactor;
+
+            for (int i = 0; i < spawnCount; i++)
             {
-                Rigidbody rigid = _spawner.Spawn(transform.position);
-                
-                _explosion.Execute(rigid, transform.position);
+                Rigidbody rb = _spawner.Spawn(target.transform.position);
+                rb.transform.localScale = childScale;
+
+                Cube childCube = rb.GetComponent<Cube>();
+                if (childCube != null)
+                {
+                    childCube.Init(childChance, reducingFact);
+                }
+
+                _explosion.Execute(rb, transform.position);
             }
         }
 
-        Destroy(gameObject);
+        Destroy(target);
     }
 }

@@ -5,6 +5,7 @@ public class Clicker : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
     [SerializeField] private float _maxDistance = 10f;
+    [SerializeField] private Cutter  _cutter;
 
     private void Update()
     {
@@ -18,7 +19,7 @@ public class Clicker : MonoBehaviour
             {
                 if (hit.transform.TryGetComponent(out Cube clickable))
                 {
-                    clickable.Interact();
+                    _cutter.Cut(clickable.gameObject);
                 }
             }
         }

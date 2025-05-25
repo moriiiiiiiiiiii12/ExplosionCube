@@ -3,19 +3,34 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    [SerializeField] private Cutter _cutter;
-    [SerializeField] private Colorer _colorer;
-    [SerializeField] private Reducer _reducer;
+    [Header("Необходимые компоненты")]
+    [SerializeField] private Renderer _renderer;
+
+    [Header("Настройки деления")]
+    [SerializeField] private float _divisionChance = 100f;
+    [SerializeField] private float _reducingFactor = 2f;
 
     private void Awake()
     {
-        _colorer.RandomChangeColor();
+        _renderer.material.color = Random.ColorHSV();
     }
 
-    public void Interact()
+    public bool TryConsumeDivision()
     {
-        _reducer.Reducing();
-
-        _cutter.Cut();
+        if (Random.Range(0f, 100f) < _divisionChance)
+        {
+            _divisionChance /= _reducingFactor;
+            return true;
+        }
+        return false;
     }
+
+    public void Init(float chance, float factor)
+    {
+        _divisionChance = chance;
+        _reducingFactor = factor;
+    }
+
+    public float CurrentChance => _divisionChance;
+    public float ReducingFactor => _reducingFactor;
 }

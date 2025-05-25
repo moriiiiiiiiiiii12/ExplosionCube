@@ -357,6 +357,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 523769655}
+  - component: {fileID: 523769656}
   m_Layer: 0
   m_Name: Exploser
   m_TagString: Untagged
@@ -379,6 +380,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &523769656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 523769653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dbb2768da85a10f8b1298cfb1ac6912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _explosionRadius: 2
+  _explosionForce: 10
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1368,6 +1383,11 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 7726727963111458945, guid: 4e73a5bebff1d2e06af0210aab70f14c, type: 3}
   m_PrefabInstance: {fileID: 6417998423642212197}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &1543996867316850084 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 534483045979327863, guid: 4e73a5bebff1d2e06af0210aab70f14c, type: 3}
+  m_PrefabInstance: {fileID: 6417998423642212197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6417998423642212197
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1376,6 +1396,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3785835446886672772, guid: 4e73a5bebff1d2e06af0210aab70f14c, type: 3}
+      propertyPath: _renderer
+      value: 
+      objectReference: {fileID: 1543996867316850084}
     - target: {fileID: 6582637163228640944, guid: 4e73a5bebff1d2e06af0210aab70f14c, type: 3}
       propertyPath: _spawner
       value: 
@@ -1383,7 +1407,7 @@ PrefabInstance:
     - target: {fileID: 6582637163228640944, guid: 4e73a5bebff1d2e06af0210aab70f14c, type: 3}
       propertyPath: _explosion
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 523769656}
     - target: {fileID: 9150395157357918274, guid: 4e73a5bebff1d2e06af0210aab70f14c, type: 3}
       propertyPath: m_Name
       value: Cube
@@ -1428,7 +1452,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6220208076320473613, guid: 4e73a5bebff1d2e06af0210aab70f14c, type: 3}
+    - {fileID: 6923479458628906337, guid: 4e73a5bebff1d2e06af0210aab70f14c, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
