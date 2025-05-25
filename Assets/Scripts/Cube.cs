@@ -10,10 +10,8 @@ public class Cube : MonoBehaviour
     [SerializeField] private float _divisionChance = 100f;
     [SerializeField] private float _reducingFactor = 2f;
 
-    private void Awake()
-    {
-        _renderer.material.color = Random.ColorHSV();
-    }
+    public float CurrentChance => _divisionChance;
+    public float ReducingFactor => _reducingFactor;
 
     public bool TryConsumeDivision()
     {
@@ -31,6 +29,8 @@ public class Cube : MonoBehaviour
         _reducingFactor = factor;
     }
 
-    public float CurrentChance => _divisionChance;
-    public float ReducingFactor => _reducingFactor;
+    private void Awake()
+    {
+        _renderer.material.color = Random.ColorHSV();
+    }
 }
