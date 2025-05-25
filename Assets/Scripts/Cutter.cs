@@ -1,7 +1,5 @@
 using UnityEngine;
 
-
-[RequireComponent(typeof(Rigidbody))]
 public class Cutter : MonoBehaviour
 {
     [Header("Необходимые компоненты")]

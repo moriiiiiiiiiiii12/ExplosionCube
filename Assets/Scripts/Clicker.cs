@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class Clicker : MonoBehaviour
 {
     [SerializeField] private Camera _camera;
