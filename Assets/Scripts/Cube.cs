@@ -3,9 +3,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Cube : MonoBehaviour
 {
-    [Header("Необходимые компоненты")]
-    [SerializeField] private Renderer _renderer;
-
     [Header("Настройки деления")]
     [SerializeField] private float _divisionChance = 100f;
     [SerializeField] private float _reducingFactor = 2f;
@@ -15,7 +12,10 @@ public class Cube : MonoBehaviour
 
     public bool TryConsumeDivision()
     {
-        if (Random.Range(0f, 100f) < _divisionChance)
+        float minDivisionChance = 0f;
+        float maxDivisionChance = 100f;
+
+        if (Random.Range(minDivisionChance, maxDivisionChance) < _divisionChance)
         {
             _divisionChance /= _reducingFactor;
             return true;
@@ -27,10 +27,5 @@ public class Cube : MonoBehaviour
     {
         _divisionChance = chance;
         _reducingFactor = factor;
-    }
-
-    private void Awake()
-    {
-        _renderer.material.color = Random.ColorHSV();
     }
 }

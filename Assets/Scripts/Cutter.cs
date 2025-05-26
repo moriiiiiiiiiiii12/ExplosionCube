@@ -4,8 +4,9 @@ public class Cutter : MonoBehaviour
 {
     [Header("Необходимые компоненты")]
     [SerializeField] private Spawner _spawner;
-    [SerializeField] private Explosion _explosion;
+    [SerializeField] private Exploder _explosion;
     [SerializeField] private Reducer _reducer;
+    [SerializeField] private Colorer _colorer;
 
     [Header("Настройки спавна")]
     [SerializeField] private int _minCountObjects = 2; 
@@ -25,21 +26,30 @@ public class Cutter : MonoBehaviour
 
             int spawnCount = Random.Range(_minCountObjects, _maxCountObjects);
             Vector3 childScale = target.transform.localScale;
+
             float childChance = cube.CurrentChance;
             float reducingFact = cube.ReducingFactor;
 
             for (int i = 0; i < spawnCount; i++)
             {
-                Rigidbody rb = _spawner.Spawn(target.transform.position);
-                rb.transform.localScale = childScale;
+                Rigidbody rigidbody = _spawner.Spawn(target.transform.position);
+                rigidbody.transform.localScale = childScale;
 
-                Cube childCube = rb.GetComponent<Cube>();
-                if (childCube != null)
+                Cube childCube;
+
+                if (rigidbody.TryGetComponent<Cube>(out childCube))
                 {
                     childCube.Init(childChance, reducingFact);
                 }
 
-                _explosion.Execute(rb, transform.position);
+                Renderer rendererCube;
+
+                if (rigidbody.TryGetComponent<Renderer>(out rendererCube))
+                {
+                    _colorer.ChangeColor(rendererCube);
+                }
+
+                _explosion.Execute(rigidbody, transform.position);
             }
         }
 
