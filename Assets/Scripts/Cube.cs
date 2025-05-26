@@ -20,6 +20,7 @@ public class Cube : MonoBehaviour
             _divisionChance /= _reducingFactor;
             return true;
         }
+        
         return false;
     }
 

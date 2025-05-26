@@ -17,6 +17,7 @@ public class Cutter : MonoBehaviour
         if (!target.TryGetComponent(out Cube cube))
         {
             Destroy(target);
+            
             return;
         }
 
