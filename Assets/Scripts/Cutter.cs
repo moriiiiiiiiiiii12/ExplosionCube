@@ -14,7 +14,7 @@ public class Cutter : MonoBehaviour
 
     public void Cut(Cube targetCube)
     {
-
+        Destroy(targetCube.gameObject);
 
         if (targetCube.TryConsumeDivision())
         {
@@ -28,23 +28,13 @@ public class Cutter : MonoBehaviour
 
             for (int i = 0; i < spawnCount; i++)
             {
-                Rigidbody rigidbody = _spawner.Spawn(targetCube.transform.position);
-                rigidbody.transform.localScale = childScale;
+                Cube newCube = _spawner.Spawn(targetCube.transform.position);
+                newCube.transform.localScale = childScale;
 
-                if (rigidbody.TryGetComponent<Cube>(out Cube childCube))
-                {
-                    childCube.Init(childChance, reducingFact);
-                }
-
-                if (rigidbody.TryGetComponent<Renderer>(out Renderer rendererCube))
-                {
-                    _colorer.ChangeColor(rendererCube);
-                }
-
-                _explosion.Execute(rigidbody, transform.position);
+                newCube.Init(childChance, reducingFact);
+                _colorer.ChangeColor(newCube.Renderer);
+                _explosion.Execute(newCube.Rigidbody, transform.position);
             }
         }
-
-        Destroy(targetCube);
     }
 }

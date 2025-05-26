@@ -146,5 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9058d155b55c744429e72813be06c7a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cutter: {fileID: 0}
+  _rigidbody: {fileID: 6691515937892941441}
   _renderer: {fileID: 4311815046341630401}
+  _divisionChance: 100
+  _reducingFactor: 2

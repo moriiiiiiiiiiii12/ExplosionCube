@@ -2,20 +2,16 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private Rigidbody _cubePrefab;
-    [SerializeField] private Transform _point;
+    [SerializeField] private Cube _cubePrefab;  
+    [SerializeField] private Transform _point;  
 
-    public Rigidbody Spawn()
+    public Cube Spawn()
     {
-        Rigidbody rigidbody = Instantiate(_cubePrefab, _point.position, Quaternion.identity);
-
-        return rigidbody;
+        return Instantiate(_cubePrefab, _point.position, Quaternion.identity);
     }
 
-    public Rigidbody Spawn(Vector3 position)
+    public Cube Spawn(Vector3 position)
     {
-        Rigidbody rigidbody = Instantiate(_cubePrefab, position, Quaternion.identity);
-        
-        return rigidbody;
+        return Instantiate(_cubePrefab, position, Quaternion.identity);
     }
 }
