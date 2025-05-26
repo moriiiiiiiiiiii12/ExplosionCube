@@ -12,40 +12,31 @@ public class Cutter : MonoBehaviour
     [SerializeField] private int _minCountObjects = 2; 
     [SerializeField] private int _maxCountObjects = 6; 
 
-    public void Cut(GameObject target)
+    public void Cut(Cube targetCube)
     {
-        if (!target.TryGetComponent(out Cube cube))
-        {
-            Destroy(target);
-            
-            return;
-        }
 
-        if (cube.TryConsumeDivision())
+
+        if (targetCube.TryConsumeDivision())
         {
-            _reducer.Reducing(target.transform);
+            _reducer.Reducing(targetCube.transform);
 
             int spawnCount = Random.Range(_minCountObjects, _maxCountObjects);
-            Vector3 childScale = target.transform.localScale;
+            Vector3 childScale = targetCube.transform.localScale;
 
-            float childChance = cube.CurrentChance;
-            float reducingFact = cube.ReducingFactor;
+            float childChance = targetCube.CurrentChance;
+            float reducingFact = targetCube.ReducingFactor;
 
             for (int i = 0; i < spawnCount; i++)
             {
-                Rigidbody rigidbody = _spawner.Spawn(target.transform.position);
+                Rigidbody rigidbody = _spawner.Spawn(targetCube.transform.position);
                 rigidbody.transform.localScale = childScale;
 
-                Cube childCube;
-
-                if (rigidbody.TryGetComponent<Cube>(out childCube))
+                if (rigidbody.TryGetComponent<Cube>(out Cube childCube))
                 {
                     childCube.Init(childChance, reducingFact);
                 }
 
-                Renderer rendererCube;
-
-                if (rigidbody.TryGetComponent<Renderer>(out rendererCube))
+                if (rigidbody.TryGetComponent<Renderer>(out Renderer rendererCube))
                 {
                     _colorer.ChangeColor(rendererCube);
                 }
@@ -54,6 +45,6 @@ public class Cutter : MonoBehaviour
             }
         }
 
-        Destroy(target);
+        Destroy(targetCube);
     }
 }

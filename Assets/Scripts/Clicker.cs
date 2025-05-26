@@ -18,7 +18,7 @@ public class Clicker : MonoBehaviour
             {
                 if (hit.transform.TryGetComponent(out Cube clickable))
                 {
-                    _cutter.Cut(clickable.gameObject);
+                    _cutter.Cut(clickable);
                 }
             }
         }
