@@ -21,8 +21,6 @@ public class Exploder : MonoBehaviour
         float newExplosionRadius = _disappearExplosionRadius / scaleObject;
         float newExplosionForce  = _disappearExplosionForce  / scaleObject;
 
-        Debug.Log(newExplosionForce);
-
         Collider[] hits = Physics.OverlapSphere(explosionCenter, newExplosionRadius); 
 
         foreach (Collider hit in hits)
