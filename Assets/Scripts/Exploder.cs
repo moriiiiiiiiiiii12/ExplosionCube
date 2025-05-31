@@ -9,4 +9,9 @@ public class Exploder : MonoBehaviour
     {
         rigidbody.AddExplosionForce(_explosionForce, explosionCenter, _explosionRadius);
     }
+
+    public void ExecutePoint(Rigidbody rigidbody, Vector3 explosionCenter, float multiplerExplosion)
+    {
+        rigidbody.AddExplosionForce(_explosionForce, explosionCenter / multiplerExplosion, _explosionRadius / multiplerExplosion);
+    }
 }

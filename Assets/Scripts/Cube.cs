@@ -24,6 +24,7 @@ public class Cube : MonoBehaviour
         if (Random.Range(minDivisionChance, maxDivisionChance) < _divisionChance)
         {
             _divisionChance /= _reducingFactor;
+            
             return true;
         }
 
