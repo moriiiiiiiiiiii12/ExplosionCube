@@ -1,17 +1,36 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Exploder : MonoBehaviour
 {
-    [SerializeField] private float _explosionRadius = 2f;
-    [SerializeField] private float _explosionForce = 10f;
+    [Header("При делении")]
+    [SerializeField] private float _splitExplosionRadius = 2f;
+    [SerializeField] private float _splitExplosionForce = 10f;
+
+    [Header("При исчезании")]
+    [SerializeField] private float _disappearExplosionRadius = 10f;
+    [SerializeField] private float _disappearExplosionForce = 500f;
 
     public void Execute(Rigidbody rigidbody, Vector3 explosionCenter)
     {
-        rigidbody.AddExplosionForce(_explosionForce, explosionCenter, _explosionRadius);
+        rigidbody.AddExplosionForce(_splitExplosionForce, explosionCenter, _splitExplosionRadius);
     }
 
-    public void ExecutePoint(Rigidbody rigidbody, Vector3 explosionCenter, float multiplerExplosion)
+    public void ExecuteScalable(Vector3 explosionCenter, float scaleObject)
     {
-        rigidbody.AddExplosionForce(_explosionForce, explosionCenter / multiplerExplosion, _explosionRadius / multiplerExplosion);
+        float newExplosionRadius = _disappearExplosionRadius / scaleObject;
+        float newExplosionForce  = _disappearExplosionForce  / scaleObject;
+
+        Debug.Log(newExplosionForce);
+
+        Collider[] hits = Physics.OverlapSphere(explosionCenter, newExplosionRadius); 
+
+        foreach (Collider hit in hits)
+        {
+            if (hit.attachedRigidbody != null)
+            {
+                hit.attachedRigidbody.AddExplosionForce(newExplosionForce, explosionCenter, newExplosionRadius);
+            }
+        }
     }
 }

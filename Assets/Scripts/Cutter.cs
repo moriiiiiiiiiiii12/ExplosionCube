@@ -10,7 +10,7 @@ public class Cutter : MonoBehaviour
 
     [Header("Настройки спавна")]
     [SerializeField] private int _minCountObjects = 2; 
-    [SerializeField] private int _maxCountObjects = 6; 
+    [SerializeField] private int _maxCountObjects = 6;
 
     public void Cut(Cube targetCube)
     {
@@ -35,6 +35,11 @@ public class Cutter : MonoBehaviour
                 _colorer.ChangeColor(newCube.Renderer);
                 _explosion.Execute(newCube.Rigidbody, transform.position);
             }
+        }
+
+        else
+        {
+            _explosion.ExecuteScalable(targetCube.transform.position, targetCube.transform.localScale.x);
         }
     }
 }
